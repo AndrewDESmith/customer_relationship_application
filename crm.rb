@@ -1,3 +1,6 @@
+require_relative "contact"
+require_relative "rolodex"
+
 class CRM
 	attr_accessor :name
 
@@ -54,34 +57,6 @@ class CRM
 	  note = gets.chomp
 	  @rolodex.add_contact(Contact.new(first_name, last_name, email, note))
 	  main_menu
-	end
-end
-
-
-class Contact
-	attr_accessor :id, :first_name, :last_name, :email, :note
-
- 	def initialize(first_name, last_name, email, notes)
-			@first_name = first_name
-			@last_name = last_name
-			@email = email
-			@note = note
- 	end
-end
-
-class Rolodex
-# Container class to handle adding things, finding things, 
-# storing things.
-	def initialize
-		@contact_id = 1000
-		@contacts = []
-	end
-
-	def add_contact(contact)
-		@contacts << contact
-		contact.id = @contact_id
-		# contact is assigned an id when the Rolodex class is called.
-		@contact_id += 1
 	end
 end
 

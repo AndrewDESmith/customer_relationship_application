@@ -1,8 +1,11 @@
 class CRM
-	attr_accesor :name
+	attr_accessor :name
 
 	def initialize(name)
 		@name = name
+		@rolodex = Rolodex.new
+		# Allows the rolodex object to be accessed anywhere within the
+		# CRM class.
 	end
 
 	def print_main_menu
@@ -39,17 +42,50 @@ class CRM
 			main_menu
 		end
 	end
+
+	def add_new_contact
+		print "Enter First Name: "
+	  first_name = gets.chomp
+	  print "Enter Last Name: "
+	  last_name = gets.chomp
+	  print "Enter Email Address: "
+	  email = gets.chomp
+	  print "Enter a Note: "
+	  note = gets.chomp
+	  @rolodex.add_contact(Contact.new(first_name, last_name, email, note))
+	  main_menu
+	end
 end
+
+
+class Contact
+	attr_accessor :id, :first_name, :last_name, :email, :note
+
+ 	def initialize(first_name, last_name, email, notes)
+			@first_name = first_name
+			@last_name = last_name
+			@email = email
+			@note = note
+ 	end
+end
+
+class Rolodex
+# Container class to handle adding things, finding things, 
+# storing things.
+	def initialize
+		@contact_id = 1000
+		@contacts = []
+	end
+
+	def add_contact(contact)
+		@contacts << contact
+		contact.id = @contact_id
+		# contact is assigned an id when the Rolodex class is called.
+		@contact_id += 1
+	end
+end
+
 
 crm = CRM.new("Bitmaker Labs CRM")
 crm.main_menu
-
-# class Contact
-# 	attr_accessor :id, :first_name, :last_name, :email, :notes
-
-# 	def initialize(id, first_name, last_name, email, notes)
-#			@id = id
-# 	end
-# end
-
-# contact = Contact.new(id, first_name, last_name, email, notes)
+contact = Contact.new(id, first_name, last_name, email, notes)

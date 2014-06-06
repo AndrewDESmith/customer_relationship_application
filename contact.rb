@@ -7,4 +7,8 @@ class Contact
 			@email = email
 			@note = note
  	end
+
+ 	def display_attributes
+ 		return nil
+ 	end
 end
